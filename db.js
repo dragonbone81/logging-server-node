@@ -2,10 +2,12 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
 // Connection URL
-const url = '';
+const url = process.env.DB_URL || "URL";
 
 // Use connect method to connect to the Server
-MongoClient.connect(url, function(err, client) {
-  assert.equal(null, err);
-  client.close();
-});
+const client = MongoClient.connect(url, { useNewUrlParser: true })
+module.exports =  
+    client.then((db) => {
+        return db.db("logging-app").collection("logging-app");
+    })
+;
