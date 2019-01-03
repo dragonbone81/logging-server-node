@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dragonbone81/logging-server-node#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongodb": "^3.1.10"
   }
 }

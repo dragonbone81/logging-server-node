@@ -3,5 +3,5 @@ const app = express();
 const server = app.listen(3000, () => console.log("Server Started!"));
 
 app.get('/', (req, res) => {
-    res.json({ sucess: true, message: 0, input: false });
+    res.json({ sucess: true, message: 0, input: false, url: process.env.DB_URL });
 })
