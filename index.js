@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
-const client = require('./db');
+const client = require('./db_connection');
+const queries = require('./db_queries');
 
 app.get('/', async (req, res) => {
     // await client;
@@ -8,11 +9,20 @@ app.get('/', async (req, res) => {
     // console.log(client.db("logging-app"));
     // console.log(app.locals.db);
     // app.locals.db.insertOne({"time":"sdfsdf", "type":"asdasd"});
-    console.log(req.app.locals.db);
-    res.json({ sucess: true, message: 0, input: false, url: process.env.DB_URL });
+    // const x = queries.add_log(req.app.locals.db, { "asd": "asd" });
+    const x = new Timestamp();
+    res.json({ sucess: true, message: 0, input: false });
 })
 
-const server = app.listen(3000, async () => {
+app.post('/add-new', (req, res) => {
+    queries.add_log(req.app.locals.db, req.body.log);
+    res.json({ success: true });
+})
+
+app.get('/logs', async (req, res) => {
+    res.json({ logs: await queries.get_logs(req.app.locals.db, {}) });
+})
+const server = app.listen(3000, () => {
     console.log("Server Started!");
-    app.locals.db = (await client);
+    app.locals.db = client;
 });
