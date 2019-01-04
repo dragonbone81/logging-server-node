@@ -1,6 +1,3 @@
-/* .App{ */
-    /* font-family: 'Open Sans', sans-serif; */
-/* } */
 .main-box{
     padding: 20px;
     text-align: center;
@@ -37,10 +34,6 @@
 .log-table{
     margin: auto;
 }
-/* .App{
-    
-} */
-
 .hover-cursor{
     cursor: pointer;
 }
