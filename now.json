@@ -6,7 +6,7 @@
     "env": {
         "DB_URL": "@dburl"
       },
-      "routes": [
+    "routes": [
         { "src": "/(.*)", "dest": "index.js" }
     ]
 }

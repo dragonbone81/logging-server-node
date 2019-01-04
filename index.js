@@ -13,7 +13,7 @@ app.get('/home', async (req, res) => {
     // console.log(app.locals.db);
     // app.locals.db.insertOne({"time":"sdfsdf", "type":"asdasd"});
     // const x = queries.add_log(req.app.locals.db, { "asd": "asd" });
-    const x = new Timestamp();
+    // const x = new Timestamp();
     res.json({ sucess: true, message: 0, input: false });
 })
 
