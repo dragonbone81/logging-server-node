@@ -1,15 +1,17 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
 const client = require('./db_connection');
 const queries = require('./db_queries');
-const path = require('path');
 
-app.use(express.static(path.join(__dirname, '/../client/build')));
-app.get('/', (req, res) => {
-    // res.json({})
-    res.sendFile(path.join(__dirname + '/../client/build/index.html'))
-})
-app.get('/home', async (req, res) => {
+app.use(morgan('short'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
+
+app.get('/', async (req, res) => {
     // await client;
     // client.db.createCollection("event_log");
     // console.log(client.db("logging-app"));
@@ -17,7 +19,7 @@ app.get('/home', async (req, res) => {
     // app.locals.db.insertOne({"time":"sdfsdf", "type":"asdasd"});
     // const x = queries.add_log(req.app.locals.db, { "asd": "asd" });
     // const x = new Timestamp();
-    res.json({ sucess: true, message: 0, input: true, db: process.env.DB_URL, path: __dirname });
+    res.json({ sucess: true, message: 0, input: true });
 })
 
 app.post('/add-new', (req, res) => {
@@ -28,7 +30,7 @@ app.post('/add-new', (req, res) => {
 app.get('/logs', async (req, res) => {
     res.json({ logs: await queries.get_logs(req.app.locals.db, {}) });
 })
-const server = app.listen(3000, () => {
+const server = app.listen(process.env.DB_URL === undefined ? 3000 : null, () => {
     console.log("Server Started!");
     app.locals.db = client;
 });
