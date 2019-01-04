@@ -5,7 +5,7 @@ export default class API {
             method: 'GET',
         })
         if (response.ok) {
-            return response.json();
+            return (await response.json()).logs;
         } else {
             return null;
         }
