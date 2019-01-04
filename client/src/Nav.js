@@ -5,7 +5,7 @@ class Nav extends Component {
     state = {
     }
     componentDidMount() {
-        this.navigate({ key: window.location.pathname.substring(1) });
+        window.location.pathname.substring(1) === "" ? this.navigate({ key: 'new_log' }) : this.navigate({ key: window.location.pathname.substring(1) });
     }
     navigate = (route) => {
         this.props.navigate(route.key);
