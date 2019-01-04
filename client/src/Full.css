@@ -18,6 +18,11 @@
 .table-row:hover{
     background-color: rgb(192, 192, 192);
 }
+.delete-log{
+    color: rgb(250, 60, 60);
+    font-size: 20px;
+    font-weight: bold;
+}
 .log-table{
     margin: auto;
 }

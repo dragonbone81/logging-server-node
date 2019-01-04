@@ -11,7 +11,7 @@ export default class API {
         }
     }
     static post_log = async (data) => {
-        let response = await fetch(API.BASE_URL + 'add-new', {
+        let response = await fetch(API.BASE_URL + 'add-log', {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json',

@@ -22,8 +22,12 @@ app.get('/', async (req, res) => {
     res.json({ sucess: true, message: 0, input: true });
 })
 
-app.post('/add-new', (req, res) => {
+app.post('/add-log', (req, res) => {
     queries.add_log(req.app.locals.db, req.body.log);
+    res.json({ success: true });
+})
+app.post('/delete-log', async (req, res) => {
+    console.log(await queries.delete_log(req.app.locals.db, req.body.id));
     res.json({ success: true });
 })
 

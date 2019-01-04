@@ -19,6 +19,7 @@ class ViewPosts extends Component {
                         <tr>
                             <th>Date</th>
                             <th>Method</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,6 +28,7 @@ class ViewPosts extends Component {
                                 <tr key={log._id} className="table-row hover-cursor">
                                     <td>{log.date}</td>
                                     <td>{log.method}</td>
+                                    <td><div className="delete-log">x</div></td>
                                 </tr>
                             )
                         })}
