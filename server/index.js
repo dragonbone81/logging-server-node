@@ -5,7 +5,10 @@ const queries = require('./db_queries');
 const path = require('path');
 
 app.use(express.static(path.join(__dirname, '/../client/build')));
-
+app.get('/', (req, res) => {
+    // res.json({})
+    res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+})
 app.get('/home', async (req, res) => {
     // await client;
     // client.db.createCollection("event_log");
@@ -14,7 +17,7 @@ app.get('/home', async (req, res) => {
     // app.locals.db.insertOne({"time":"sdfsdf", "type":"asdasd"});
     // const x = queries.add_log(req.app.locals.db, { "asd": "asd" });
     // const x = new Timestamp();
-    res.json({ sucess: true, message: 0, input: false, db: process.env.DB_URL, path: __dirname });
+    res.json({ sucess: true, message: 0, input: true, db: process.env.DB_URL, path: __dirname });
 })
 
 app.post('/add-new', (req, res) => {
@@ -29,6 +32,3 @@ const server = app.listen(3000, () => {
     console.log("Server Started!");
     app.locals.db = client;
 });
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/../client/build/index.html'))
-})
