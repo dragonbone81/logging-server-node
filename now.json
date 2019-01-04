@@ -1,7 +1,6 @@
 {
     "builds": [
-        { "src": "server/index.js", "use": "@now/node-server" },
-        { "src": "client/package.json", "use": "@now/static-build" }
+        { "src": "server/index.js", "use": "@now/node-server" }
       ],
     "alias": ["dragonbone81-logging-server"],
     "env": {
