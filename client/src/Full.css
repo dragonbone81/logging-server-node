@@ -23,6 +23,17 @@
     font-size: 20px;
     font-weight: bold;
 }
+.delete-log-spinner{
+    font-size: 20px;
+    font-weight: bold;
+}
+.refresh-logs{
+    margin-left: 20px;
+    font-size: 20px;
+}
+.loading-logs-spinner{
+    font-size: 50px;
+}
 .log-table{
     margin: auto;
 }

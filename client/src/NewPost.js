@@ -6,7 +6,8 @@ class NewPost extends Component {
     state = {
         date: '',
         method: '',
-        date_error: 'Bad Format'
+        date_error: 'Bad Format',
+        adding_log: false,
     }
     getDateFromString = (input) => {
         try {
@@ -47,8 +48,9 @@ class NewPost extends Component {
         if (!date || !this.state.method || date === this.state.date_error) {
             return;
         }
+        this.setState({ adding_log: true })
         console.log(await API.post_log({ date, method: this.state.method }))
-        this.setState({ date: '', method: '' });
+        this.setState({ date: '', method: '', adding_log: false });
     }
     render() {
         return (
@@ -57,7 +59,7 @@ class NewPost extends Component {
                 <form className="pure-form">
                     <input className="pure-input-rounded" onChange={({ target }) => this.setState({ date: target.value })} value={this.state.date} type="text" placeholder="Date" required />
                     <input className="pure-input-rounded margin-left" onChange={({ target }) => this.setState({ method: target.value })} value={this.state.method} type="text" placeholder="Method" required />
-                    <button onClick={this.setDate} type="button" className="pure-button pure-button-primary margin-left">Submit</button>
+                    <button onClick={this.setDate} type="button" className={"pure-button pure-button-primary margin-left" + (this.state.adding_log ? " pure-button-disabled" : "")}>{this.state.adding_log ? <i className="fas fa-cog fa-spin add-log-spinner" /> : "Submit"}</button>
                 </form>
             </div>
         );
