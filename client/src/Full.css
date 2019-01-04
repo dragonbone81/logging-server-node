@@ -13,6 +13,10 @@
     
 } */
 
+.hover-cursor{
+    cursor: pointer;
+}
+
 .blurred-bg{
     position: absolute;
     background-color: lightgray;

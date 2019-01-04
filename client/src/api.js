@@ -4,6 +4,26 @@ export default class API {
         let response = await fetch(API.BASE_URL + 'logs', {
             method: 'GET',
         })
-        console.log(response);
+        if (response.ok) {
+            return response.json();
+        } else {
+            return null;
+        }
+    }
+    static post_log = async (data) => {
+        let response = await fetch(API.BASE_URL + 'add-new', {
+            method: 'POST',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+            }),
+            body: JSON.stringify({
+                log: data,
+            })
+        })
+        if (response.ok) {
+            return response.json();
+        } else {
+            return null;
+        }
     }
 }
