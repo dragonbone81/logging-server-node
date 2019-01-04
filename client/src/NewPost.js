@@ -16,7 +16,7 @@ class NewPost extends Component {
             const parts = time.match(/(\d+):?(\d+)?(AM|PM|am|pm)/);
             let hour;
             let minute
-            if (time.length > 5 && !time.includes(":")) {
+            if (time.length >= 5 && !time.includes(":")) {
                 const totalTime = parts[1];
                 if (totalTime.length === 4) {
                     hour = parseInt(totalTime.substring(0, 2));
