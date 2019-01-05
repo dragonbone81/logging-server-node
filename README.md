@@ -9,5 +9,5 @@
   - Displays all your current logs and able to add a new logs.
   - Automatically formats times (1/1/2019 738pm => 2019-1-1 19:38:00) to store in DB.
 
-### Website: https://dragonbone81-logging-client.netlify.com/new_log
+### Website: https://dragonbone81-logging-client.netlify.com
 ### Back-end REST API: https://dragonbone81-logging-server.now.sh/logs
