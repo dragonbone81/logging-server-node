@@ -4,7 +4,8 @@
       ],
     "alias": ["dragonbone81-logging-server"],
     "env": {
-        "DB_URL": "@dburl"
+        "DB_URL": "@dburl",
+        "SECRET_KEY": "@secret_key"
       },
     "routes": [
         { "src": "/(.*)", "dest": "server/index.js" }
