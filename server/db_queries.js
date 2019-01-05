@@ -15,7 +15,7 @@ module.exports.delete_log = async (db, id) => {
 }
 module.exports.create_user = async (db, user) => {
     const hashedPW = await auth.hashPassword(user.password);
-    (await db).insertOne({ username: user.username, password: hashedPW, create_at: new Date(), logs: [] })
+    (await db).insertOne({ username: user.username, password: hashedPW, created_at: new Date(), logs: [] })
     return auth.signJWT(user.username);
 }
 module.exports.login_user = async (db, user) => {
