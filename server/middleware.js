@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     res.json({ error: "invalid token request" });
     return;
   }
-  const verifiedJWT = auth.verifiedJWT(token);
+  const verifiedJWT = auth.verifyJWT(token);
   if (verifiedJWT.success) {
     req.username = verifiedJWT.username;
     next();

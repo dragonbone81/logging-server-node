@@ -22,17 +22,21 @@ app.get("/", async (req, res) => {
   res.json({ sucess: true, message: 0, input: true });
 });
 
-app.post("/add-log", checkJWT, (req, res) => {
-  queries.add_log(req.app.locals.db, req.body.log);
+app.post("/add-log", checkJWT, async (req, res) => {
+  console.log(
+    await queries.add_log(req.app.locals.db, req.body.log, req.username)
+  );
   res.json({ success: true });
 });
 app.post("/delete-log", checkJWT, async (req, res) => {
-  await queries.delete_log(req.app.locals.db, req.body.id);
+  await queries.delete_log(req.app.locals.db, req.body.id, req.username);
   res.json({ success: true });
 });
 
 app.get("/logs", checkJWT, async (req, res) => {
-  res.json({ logs: await queries.get_logs(req.app.locals.db, {}) });
+  res.json({
+    logs: await queries.get_logs(req.app.locals.db, {}, req.username)
+  });
 });
 app.post("/login", async (req, res) => {
   const token = await queries.login_user(req.app.locals.db, req.body.user);

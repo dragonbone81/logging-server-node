@@ -1,17 +1,20 @@
 const ObjectID = require("mongodb").ObjectID;
 const auth = require("./auth");
-module.exports.add_log = async (db, data) => {
-  return (await db).insertOne(data);
+module.exports.add_log = async (db, data, username) => {
+  return (await db).updateOne({ username }, { $push: { logs: data } });
 };
-module.exports.get_logs = async (db, filter) => {
-  const logs = await (await db).find(filter).toArray();
-  logs.sort((a, b) => {
+module.exports.get_logs = async (db, filter, username) => {
+  const logs = await (await db).findOne(
+    { ...filter, username },
+    { projection: { logs: true } }
+  );
+  logs.logs.sort((a, b) => {
     return new Date(a.date).getTime() - new Date(b.date).getTime();
   });
-  return logs;
+  return logs.logs;
 };
-module.exports.delete_log = async (db, id) => {
-  return (await db).deleteOne({ _id: new ObjectID(id) });
+module.exports.delete_log = async (db, id, username) => {
+  (await db).updateOne({ username }, { $pop: { logs: id } });
 };
 module.exports.create_user = async (db, user) => {
   const DBuser = await (await db).findOne(
@@ -31,7 +34,6 @@ module.exports.create_user = async (db, user) => {
   return auth.signJWT(user.username);
 };
 module.exports.login_user = async (db, user) => {
-  console.log(user);
   const DBuser = await (await db).findOne(
     { username: user.username },
     { projection: { username: true, password: true } }
