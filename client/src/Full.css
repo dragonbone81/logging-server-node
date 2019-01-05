@@ -7,10 +7,15 @@
     margin-left: 10px;
 }
 .nav-bar{
+    text-align: left;
     background-color: rgb(187, 187, 187);
     border-radius: 10px;
-    line-height: 30px;
-    padding: 5px;
+    font-size: 20px;
+    padding: 0px;
+}
+.border-rounded{
+    border-radius: 20px;
+    margin: 5px;
 }
 .table-row:hover{
     background-color: rgb(192, 192, 192);

@@ -18,7 +18,7 @@ class Nav extends Component {
                     <ul className="pure-menu-list">
                         {this.props.nav.routes.map((route) => {
                             return <li key={route.key} onClick={() => this.navigate(route)} className={this.props.nav.current === route.key ? "pure-menu-item  pure-menu-selected" : "pure-menu-item"}>
-                                <a className="pure-menu-link hover-cursor">{route.value}</a>{/*eslint-disable-line*/}
+                                <a className="border-rounded pure-menu-link hover-cursor">{route.value}</a>{/*eslint-disable-line*/}
                             </li>
                         })}
                     </ul>
