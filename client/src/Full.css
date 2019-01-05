@@ -32,18 +32,29 @@
     font-size: 50px;
 }
 .log-table{
-    margin: auto;
+    /* margin: auto; */
+    /* background-color: aqua; */
 }
+.transparent-background{
+    background-color: rgba(255, 255, 255, 0.911);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: fit-content;
+    margin: 20px auto 0 auto;
+}
+.ViewPosts{
+    font-size: 20px;
+}
+   
 .hover-cursor{
     cursor: pointer;
 }
 
-.blurred-bg{
-    position: absolute;
-    background-color: rgb(240, 238, 238);
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+body{
+    background-image: url('https://i.imgur.com/ygQr777.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 .confirm-top {
     position: fixed;

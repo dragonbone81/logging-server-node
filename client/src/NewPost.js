@@ -54,7 +54,7 @@ class NewPost extends Component {
     }
     render() {
         return (
-            <div className="NewPost">
+            <div className="NewPost transparent-background">
                 <h2>Submit A Log</h2>
                 <form className="pure-form">
                     <input className="pure-input-rounded" onChange={({ target }) => this.setState({ date: target.value })} value={this.state.date} type="text" placeholder="Date" required />

@@ -37,7 +37,7 @@ class ViewPosts extends Component {
     }
     render() {
         return (
-            <div className="ViewPosts">
+            <div className="ViewPosts transparent-background">
                 {this.state.confirm_dialog ? <div className='confirm-top'>
                     <div className='react-confirm-alert'>
                         <div className='confirm-body'>
