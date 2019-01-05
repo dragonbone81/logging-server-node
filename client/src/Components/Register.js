@@ -15,14 +15,16 @@ class Register extends Component {
       password: this.state.password
     });
     const { token } = await response;
-    this.props.set_user({ token, username: this.state.username });
-    window.localStorage.setItem(
-      "user",
-      JSON.stringify({ token, username: this.state.username })
-    );
-    this.setState({ username: "", password: "" });
+    if (token) {
+      this.props.set_user({ token, username: this.state.username });
+      window.localStorage.setItem(
+        "user",
+        JSON.stringify({ token, username: this.state.username })
+      );
+      this.setState({ username: "", password: "" });
 
-    this.props.navigate({ key: "new_log" });
+      this.props.navigate({ key: "new_log" });
+    }
   };
   render() {
     return (

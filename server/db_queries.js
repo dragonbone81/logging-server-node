@@ -14,6 +14,13 @@ module.exports.delete_log = async (db, id) => {
   return (await db).deleteOne({ _id: new ObjectID(id) });
 };
 module.exports.create_user = async (db, user) => {
+  const DBuser = await (await db).findOne(
+    { username: user.username },
+    { projection: { username: true } }
+  );
+  if (DBuser) {
+    return false;
+  }
   const hashedPW = await auth.hashPassword(user.password);
   (await db).insertOne({
     username: user.username,
