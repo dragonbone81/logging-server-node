@@ -24,13 +24,11 @@ class Register extends Component {
         "user",
         JSON.stringify({ token, username: this.state.username })
       );
-      this.setState({ username: "", password: "" });
-
       this.props.navigate({ key: "new_log" });
     } else {
       this.setState({ register_error: true });
+      this.setState({ registering: false });
     }
-    this.setState({ registering: false });
   };
   render() {
     return (

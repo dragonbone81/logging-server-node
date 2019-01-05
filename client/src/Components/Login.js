@@ -24,12 +24,11 @@ class Login extends Component {
         "user",
         JSON.stringify({ token, username: this.state.username })
       );
-      this.setState({ username: "", password: "" });
       this.props.navigate({ key: "new_log" });
     } else {
       this.setState({ login_error: true });
+      this.setState({ logging_in: false });
     }
-    this.setState({ logging_in: false });
   };
   render() {
     return (

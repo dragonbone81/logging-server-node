@@ -56,11 +56,20 @@ class App extends Component {
             {(() => {
               switch (this.state.nav.current) {
                 case "new_log":
-                  return <NewPost />;
+                  return (
+                    <NewPost user={this.state.user} navigate={this.navigate} />
+                  );
                 case "view_logs":
-                  return <ViewPosts />;
+                  return (
+                    <ViewPosts
+                      user={this.state.user}
+                      navigate={this.navigate}
+                    />
+                  );
                 case "data":
-                  return <Data />;
+                  return (
+                    <Data user={this.state.user} navigate={this.navigate} />
+                  );
                 case "login":
                   return (
                     <Login navigate={this.navigate} set_user={this.set_user} />

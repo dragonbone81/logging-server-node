@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const client = require("./db_connection");
 const queries = require("./db_queries");
+const checkJWT = require("./middleware");
 app.use(morgan("short"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -21,16 +22,16 @@ app.get("/", async (req, res) => {
   res.json({ sucess: true, message: 0, input: true });
 });
 
-app.post("/add-log", (req, res) => {
+app.post("/add-log", checkJWT, (req, res) => {
   queries.add_log(req.app.locals.db, req.body.log);
   res.json({ success: true });
 });
-app.post("/delete-log", async (req, res) => {
+app.post("/delete-log", checkJWT, async (req, res) => {
   await queries.delete_log(req.app.locals.db, req.body.id);
   res.json({ success: true });
 });
 
-app.get("/logs", async (req, res) => {
+app.get("/logs", checkJWT, async (req, res) => {
   res.json({ logs: await queries.get_logs(req.app.locals.db, {}) });
 });
 app.post("/login", async (req, res) => {
