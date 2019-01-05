@@ -5,7 +5,6 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const client = require("./db_connection");
 const queries = require("./db_queries");
-const { SECRET_KEY } = require("./secrets");
 app.use(morgan("short"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -19,7 +18,7 @@ app.get("/", async (req, res) => {
   // app.locals.db.insertOne({"time":"sdfsdf", "type":"asdasd"});
   // const x = queries.add_log(req.app.locals.db, { "asd": "asd" });
   // const x = new Timestamp();
-  res.json({ sucess: true, message: 0, input: true, SECRET_KEY });
+  res.json({ sucess: true, message: 0, input: true });
 });
 
 app.post("/add-log", (req, res) => {
@@ -37,7 +36,7 @@ app.get("/logs", async (req, res) => {
 app.post("/login", async (req, res) => {
   const token = await queries.login_user(req.app.locals.db, req.body.user);
   if (token) {
-    res.json(token);
+    res.json({ token });
   } else {
     res.json({ success: false });
   }

@@ -24,10 +24,14 @@ module.exports.create_user = async (db, user) => {
   return auth.signJWT(user.username);
 };
 module.exports.login_user = async (db, user) => {
+  console.log(user);
   const DBuser = await (await db).findOne(
     { username: user.username },
     { projection: { username: true, password: true } }
   );
+  if (!DBuser) {
+    return false;
+  }
   const samePassword = auth.comparePassword(user.password, DBuser.password);
   if (samePassword) {
     return auth.signJWT(user.username);
