@@ -1,4 +1,3 @@
-const ObjectID = require("mongodb").ObjectID;
 const auth = require("./auth");
 module.exports.add_log = async (db, data, username) => {
   return (await db).updateOne({ username }, { $push: { logs: data } });
@@ -14,7 +13,8 @@ module.exports.get_logs = async (db, filter, username) => {
   return logs.logs;
 };
 module.exports.delete_log = async (db, id, username) => {
-  (await db).updateOne({ username }, { $pop: { logs: id } });
+  (await db).updateOne({ username }, { $set: { [`logs.${id}`]: null } });
+  (await db).updateOne({ username }, { $pull: { logs: null } });
 };
 module.exports.create_user = async (db, user) => {
   const DBuser = await (await db).findOne(

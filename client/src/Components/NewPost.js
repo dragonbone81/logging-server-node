@@ -61,7 +61,12 @@ class NewPost extends Component {
       return;
     }
     this.setState({ adding_log: true });
-    console.log(await API.post_log({ date, method: this.state.method }));
+    console.log(
+      await API.post_log(
+        { date, method: this.state.method },
+        this.props.user.token
+      )
+    );
     this.setState({ date: "", method: "", adding_log: false });
   };
   render() {

@@ -26,7 +26,7 @@ class ViewPosts extends Component {
   }
   load_logs = async () => {
     this.setState({ getting_logs: true, logs: [] });
-    const logs = await API.get_logs();
+    const logs = await API.get_logs(this.props.user.token);
     this.setState({ logs, getting_logs: false });
   };
   open_confirm = id => {
@@ -39,9 +39,11 @@ class ViewPosts extends Component {
     const id = this.state.log_clicked_id;
     this.close_confirm();
     this.setState({ log_clicked: id, deleting_log: true });
-    const response = await API.delete_log(id);
+    const response = await API.delete_log(id, this.props.user.token);
     if (response) {
-      this.setState({ logs: this.state.logs.filter(log => log._id !== id) });
+      this.setState({
+        logs: this.state.logs.filter((log, index) => index !== id)
+      });
     }
     this.setState({ log_clicked: false, deleting_log: false });
   };
@@ -102,18 +104,18 @@ class ViewPosts extends Component {
                 </td>
               </tr>
             ) : null}
-            {this.state.logs.map(log => {
+            {this.state.logs.map((log, index) => {
               return (
-                <tr key={log._id} className="table-row hover-cursor">
+                <tr key={index} className="table-row hover-cursor">
                   <td>{log.date}</td>
                   <td>{log.method}</td>
                   <td>
-                    {this.state.log_clicked === log._id &&
+                    {this.state.log_clicked === index &&
                     this.state.deleting_log ? (
                       <i className="fas fa-cog fa-spin delete-log-spinner" />
                     ) : (
                       <div
-                        onClick={() => this.open_confirm(log._id)}
+                        onClick={() => this.open_confirm(index)}
                         className="delete-log"
                       >
                         x

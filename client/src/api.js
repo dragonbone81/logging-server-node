@@ -1,8 +1,12 @@
 export default class API {
   static BASE_URL = "https://dragonbone81-logging-server.now.sh/";
-  static get_logs = async () => {
+  static get_logs = async token => {
     let response = await fetch(API.BASE_URL + "logs", {
-      method: "GET"
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token
+      }
     });
     if (response.ok) {
       return (await response.json()).logs;
@@ -10,11 +14,12 @@ export default class API {
       return null;
     }
   };
-  static post_log = async data => {
+  static post_log = async (data, token) => {
     let response = await fetch(API.BASE_URL + "add-log", {
       method: "POST",
       headers: new Headers({
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        token
       }),
       body: JSON.stringify({
         log: data
@@ -26,11 +31,12 @@ export default class API {
       return null;
     }
   };
-  static delete_log = async id => {
+  static delete_log = async (id, token) => {
     let response = await fetch(API.BASE_URL + "delete-log", {
       method: "POST",
       headers: new Headers({
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        token
       }),
       body: JSON.stringify({
         id

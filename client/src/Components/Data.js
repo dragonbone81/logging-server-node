@@ -24,7 +24,7 @@ class Data extends Component {
   }
   load_logs = async () => {
     this.setState({ logs: [] });
-    const logs = await API.get_logs();
+    const logs = await API.get_logs(this.props.user.token);
     this.setState({ logs });
     const labels = [...new Set(logs.map(log => log.date.split(",")[0]))];
     const types = [...new Set(logs.map(log => log.method))];
