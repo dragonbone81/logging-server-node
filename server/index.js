@@ -46,7 +46,7 @@ app.post('/register', async (req, res) => {
     const token = await queries.create_user(req.app.locals.db, req.body.user);
     res.json(token);
 });
-const server = app.listen(process.env.DB_URL === undefined ? 3000 : null, () => {
+const server = app.listen(process.env.DB_URL === undefined ? 3001 : null, () => {
     console.log("Server Started!");
     app.locals.db = client;
 });
