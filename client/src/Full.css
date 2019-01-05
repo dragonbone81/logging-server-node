@@ -6,8 +6,16 @@
 .margin-left{
     margin-left: 10px;
 }
+.menu-block{
+    display: flex;
+}
+.left-menu{
+    margin-right: auto;
+}
+.right-menu{
+    margin-left: auto;
+}
 .nav-bar{
-    text-align: left;
     background-color: rgb(187, 187, 187);
     border-radius: 10px;
     font-size: 20px;

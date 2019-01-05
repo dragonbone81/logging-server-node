@@ -4,15 +4,17 @@ import NewPost from './NewPost';
 import ViewPosts from './ViewPosts';
 import Data from './Data';
 import Nav from './Nav';
+import Login from './Login';
 
 class App extends Component {
   state = {
     nav: {
       current: 'new_log',
       routes: [
-        { key: 'new_log', value: 'Add Log' },
-        { key: 'view_logs', value: 'View Logs' },
-        { key: 'data', value: 'Data' },
+        { key: 'new_log', value: 'Add Log', position: 'left' },
+        { key: 'view_logs', value: 'View Logs', position: 'left' },
+        { key: 'data', value: 'Data', position: 'left' },
+        { key: 'login', value: 'Login', position: 'right' },
       ]
     }
   }
@@ -36,6 +38,8 @@ class App extends Component {
                   return <ViewPosts />
                 case 'data':
                   return <Data />
+                case 'login':
+                  return <Login />
                 default:
                   return <div><h2>Not Found</h2></div>
               }
