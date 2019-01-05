@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './Full.css';
-import API from './api';
+import '../Full.css';
+import API from '../api';
 import { Bar } from 'react-chartjs-2';
 
 class Data extends Component {
