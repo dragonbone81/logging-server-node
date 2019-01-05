@@ -63,6 +63,7 @@ class Nav extends Component {
               </ul>
             ) : (
               <ul className="pure-menu-list right-menu">
+                <span>{this.props.user.username}</span>
                 {this.props.nav.routes
                   .filter(route => route.position === "logout")
                   .map(route => {

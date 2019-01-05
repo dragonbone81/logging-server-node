@@ -106,9 +106,19 @@ body {
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
-
 .button-success {
   border-radius: 5px;
   width: 100%;
   background: rgb(28, 184, 65); /* this is a green */
+  position: relative;
+}
+.span-error {
+  color: rgb(255, 61, 61);
+  font-weight: bold;
+  font-size: 20px;
+}
+.login-spinner,
+.register-spinner {
+  position: absolute;
+  right: 10px;
 }

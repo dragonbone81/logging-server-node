@@ -5,10 +5,13 @@ import API from "../api";
 class Register extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    registering: false,
+    register_error: false
   };
   componentDidMount() {}
   register = async e => {
+    this.setState({ registering: true, register_error: false });
     e.preventDefault();
     const response = API.register({
       username: this.state.username,
@@ -24,13 +27,19 @@ class Register extends Component {
       this.setState({ username: "", password: "" });
 
       this.props.navigate({ key: "new_log" });
+    } else {
+      this.setState({ register_error: true });
     }
+    this.setState({ registering: false });
   };
   render() {
     return (
       <div className="Register transparent-background">
         <h2>Register</h2>
         <div className="register-form">
+          {this.state.register_error && (
+            <span className="span-error">*Could not Register</span>
+          )}
           <form
             onSubmit={this.register}
             className="pure-form pure-form-aligned"
@@ -65,6 +74,9 @@ class Register extends Component {
               </div>
               <button type="submit" className="pure-button button-success">
                 Register
+                {this.state.registering && (
+                  <i className="fas fa-sync fa-spin register-spinner" />
+                )}
               </button>
             </fieldset>
           </form>
