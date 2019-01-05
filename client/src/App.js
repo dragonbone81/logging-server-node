@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Full.css';
 import NewPost from './NewPost';
 import ViewPosts from './ViewPosts';
+import Data from './Data';
 import Nav from './Nav';
 
 class App extends Component {
@@ -10,7 +11,8 @@ class App extends Component {
       current: 'new_log',
       routes: [
         { key: 'new_log', value: 'Add Log' },
-        { key: 'view_logs', value: 'View Logs' }
+        { key: 'view_logs', value: 'View Logs' },
+        { key: 'data', value: 'Data' },
       ]
     }
   }
@@ -32,6 +34,8 @@ class App extends Component {
                   return <NewPost />
                 case 'view_logs':
                   return <ViewPosts />
+                case 'data':
+                  return <Data />
                 default:
                   return <div><h2>Not Found</h2></div>
               }

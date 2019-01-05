@@ -50,6 +50,10 @@
 .ViewPosts{
     font-size: 20px;
 }
+.Data{
+    height: 300px;
+    max-width: inherit;
+}
    
 .hover-cursor{
     cursor: pointer;
