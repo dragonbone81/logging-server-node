@@ -20,14 +20,26 @@ class App extends Component {
         { key: "logout", value: "Logout", position: "logout" }
       ]
     },
-    user: {}
+    user: {},
+    getting_token: true
   };
   componentDidMount() {
     const user = window.localStorage.getItem("user");
     if (user) {
-      this.setState({ user: JSON.parse(user) });
+      this.setState({ user: JSON.parse(user) }, () =>
+        this.setState({ getting_token: false })
+      );
     }
+    this.setState({ getting_token: false });
   }
+  check_token = () => {
+    if (!this.state.user.token && !this.state.getting_token) {
+      this.navigate({ key: "login" });
+      return false;
+    } else {
+      return true;
+    }
+  };
   set_user = user => {
     this.setState({ user });
   };
@@ -57,18 +69,24 @@ class App extends Component {
               switch (this.state.nav.current) {
                 case "new_log":
                   return (
-                    <NewPost user={this.state.user} navigate={this.navigate} />
+                    <NewPost
+                      user={this.state.user}
+                      check_token={this.check_token}
+                    />
                   );
                 case "view_logs":
                   return (
                     <ViewPosts
                       user={this.state.user}
-                      navigate={this.navigate}
+                      check_token={this.check_token}
                     />
                   );
                 case "data":
                   return (
-                    <Data user={this.state.user} navigate={this.navigate} />
+                    <Data
+                      user={this.state.user}
+                      check_token={this.check_token}
+                    />
                   );
                 case "login":
                   return (

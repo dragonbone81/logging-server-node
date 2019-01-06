@@ -9,7 +9,9 @@ class Login extends Component {
     logging_in: false,
     login_error: false
   };
-  componentDidMount() {}
+  componentDidMount() {
+    document.title = "Login";
+  }
   login = async e => {
     this.setState({ logging_in: true, login_error: false });
     e.preventDefault();

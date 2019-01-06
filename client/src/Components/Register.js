@@ -9,7 +9,9 @@ class Register extends Component {
     registering: false,
     register_error: false
   };
-  componentDidMount() {}
+  componentDidMount() {
+    document.title = "Logout";
+  }
   register = async e => {
     this.setState({ registering: true, register_error: false });
     e.preventDefault();

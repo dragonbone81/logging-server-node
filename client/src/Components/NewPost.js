@@ -10,16 +10,11 @@ class NewPost extends Component {
     adding_log: false
   };
   componentDidMount() {
-    if (!this.props.user.token) {
-      this.props.navigate({ key: "login" });
-      return;
-    }
+    this.props.check_token();
+    document.title = "New Log";
   }
   componentDidUpdate() {
-    if (!this.props.user.token) {
-      this.props.navigate({ key: "login" });
-      return;
-    }
+    this.props.check_token();
   }
   getDateFromString = input => {
     try {

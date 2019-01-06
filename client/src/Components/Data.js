@@ -10,17 +10,13 @@ class Data extends Component {
     data: []
   };
   componentDidMount() {
-    if (!this.props.user.token) {
-      this.props.navigate({ key: "login" });
-      return;
+    if (this.props.check_token()) {
+      this.load_logs();
+      document.title = "Data";
     }
-    this.load_logs();
   }
   componentDidUpdate() {
-    if (!this.props.user.token) {
-      this.props.navigate({ key: "login" });
-      return;
-    }
+    this.props.check_token();
   }
   load_logs = async () => {
     this.setState({ logs: [] });
