@@ -58,8 +58,13 @@
   font-size: 20px;
 }
 .Data {
+  padding: 40px;
   height: 300px;
   max-width: inherit;
+}
+.charts {
+  height: 300px;
+  /* max-width: inherit; */
 }
 
 .hover-cursor {
