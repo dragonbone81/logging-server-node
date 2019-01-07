@@ -50,7 +50,8 @@ class NewPost extends Component {
       return this.state.date_error;
     }
   };
-  setDate = async () => {
+  setDate = async (e) => {
+    e.preventDefault();
     const date = this.getDateFromString(this.state.date);
     if (!date || !this.state.method || date === this.state.date_error) {
       return;
@@ -68,7 +69,7 @@ class NewPost extends Component {
     return (
       <div className="NewPost transparent-background">
         <h2>Submit A Log</h2>
-        <form className="pure-form">
+        <form onSubmit={this.setDate} className="pure-form">
           <input
             className="pure-input-rounded"
             onChange={({ target }) => this.setState({ date: target.value })}
@@ -86,8 +87,7 @@ class NewPost extends Component {
             required
           />
           <button
-            onClick={this.setDate}
-            type="button"
+            type="submit"
             className={
               "pure-button pure-button-primary margin-left" +
               (this.state.adding_log ? " pure-button-disabled" : "")
