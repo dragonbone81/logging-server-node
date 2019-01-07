@@ -111,7 +111,7 @@ class ViewPosts extends Component {
                       <i className="fas fa-cog fa-spin delete-log-spinner" />
                     ) : (
                       <div
-                        onClick={() => this.open_confirm(index)}
+                        onClick={() => this.open_confirm(log._id)}
                         className="delete-log"
                       >
                         x
