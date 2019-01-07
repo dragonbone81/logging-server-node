@@ -38,7 +38,7 @@ class ViewPosts extends Component {
     const response = await API.delete_log(id, this.props.user.token);
     if (response) {
       this.setState({
-        logs: this.state.logs.filter((log, index) => index !== id)
+        logs: this.state.logs.filter((log) => log._id !== id)
       });
     }
     this.setState({ log_clicked: false, deleting_log: false });

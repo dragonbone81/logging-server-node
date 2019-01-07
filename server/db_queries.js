@@ -17,7 +17,10 @@ module.exports.get_logs = async (db, filter, username) => {
   return logs.logs;
 };
 module.exports.delete_log = async (db, id, username) => {
-  (await db).updateOne({ username }, { $pull: { logs: { _id: id } } });
+  (await db).updateOne(
+    { username },
+    { $pull: { logs: { _id: new ObjectID(id) } } }
+  );
 };
 module.exports.create_user = async (db, user) => {
   const DBuser = await (await db).findOne(
